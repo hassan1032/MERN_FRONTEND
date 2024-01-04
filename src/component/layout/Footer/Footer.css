@@ -5,14 +5,48 @@ footer{
     justify-content: center;
     background: black;
     height: 60vh;
-    position: relative;
-    top: 237px;
+    /* position: relative;
+    top: 237px; */
 }
 footer div{
     color: white;
     height: 268px;
     width: 25%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+footer div .title{
+    color: #fdd835;
+    font-size: 16px;
+    letter-spacing: 1px;
+    word-spacing: 5px;
+    height: 0px;
+    width: 100%;
+    padding-bottom: 20px;
+}
+.social{
+    display: flex;
+    /* align-content: center; */
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+.logo2{
+    width: 56%;
+}
+.copyright{
+    background: black;
+    height: 20px;
+    margin-top: -20px;
+}
+.copyright p{
+        /* display: flex; */
+        text-align: center;
+        background: black;
+        color: white;
+        padding-bottom: 17px;
 }
