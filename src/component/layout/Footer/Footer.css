@@ -1,0 +1,18 @@
+footer{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    background: black;
+    height: 60vh;
+    position: relative;
+    top: 237px;
+}
+footer div{
+    color: white;
+    height: 268px;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

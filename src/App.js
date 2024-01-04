@@ -4,6 +4,7 @@ import Header from "./component/layout/Header.js";
 import { BrowserRouter as Router} from "react-router-dom";
 import WebFont from 'webfontloader';
 import React from "react";
+import Footer from "./component/layout/Footer/Footer.js"
 function App() {
   React.useEffect(()=>{
     WebFont.load({
@@ -16,6 +17,7 @@ function App() {
    <>
       <Router>
       <Header/>
+      <Footer/>
       </Router>
 
    </>
