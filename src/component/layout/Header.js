@@ -3,7 +3,6 @@ import { CiSearch } from "react-icons/ci";
 import { ReactNavbar } from "overlay-navbar";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiUser } from "react-icons/ci";
-// import logo from "../../../images/logo.png";
 import logo from "../../images/logo.png";
 
 const Header = () => {
@@ -17,38 +16,39 @@ const Header = () => {
         ProfileIconElement={CiUser}
         searchIcon={true}
         SearchIconElement={CiSearch}
-        navColor2="white"
-        navColor1="white"
-        profileIconColor="black"
-        searchIconColor="black"
-        cartIconColor="black"
-        cartIconTransition="0.5"
-        profileIconTransition="0.5"
-        profileIconColorHover="red"
-        searchIconMargin="0"
-        cartIconMargin="0"
-        profileIconMargin="0"
-        searchIconUrl="/search"
-        profileIconUrl="/account"
-        cartIconUrl="/cart"
-        searchIconSize="2vmax"
-        cartIconSize="2vmax"
-        profileIconSize="2.5vmax"
-        searchIconColorHover="red"
-        cartIconColorHover="red"
-        searchIconAnimationTime="2"
-        cartIconAnimationTime="3"
-        profileIconAnimationTime="4"
-        link1Text="Home"
-        link2Text="About"
-        link3Text="Contact"
-        link4Text="Product"
-        link1Family="cursive"
-        ink1ColorHover="red"
-        ink2ColorHover="red"
-        ink3ColorHover="red"
-        ink4ColorHover="red"
-
+        
+          burgerColorHover= "#0066FF"
+        
+          logoWidth="10vmax"
+          navColor1= "white"
+          logoHoverSize= "5px"
+          logoHoverColor= "#eb4034"
+          link1Text ="Home"
+          link2Text ="Products"
+          link3Text= "Contact"
+          link4Text= "About"
+          link1Url="/"
+          link2Url= "/products"
+          link3Url= "/contact"
+          link4Url= "/about"
+          link1Size="1.3vmax"
+          link1Color= "rgba(35, 35, 35,0.8)"
+          nav1justifyContent="flex-end"
+          nav2justifyContent= "flex-end"
+          nav3justifyContent= "flex-start"
+          nav4justifyContent= "flex-start"
+          link1ColorHover= "#eb4034"
+          link1Margin= "1vmax"
+          profileIconUrl= "/login"
+          profileIconColor= "rgba(35, 35, 35,0.8)"
+          searchIconColor= "rgba(35, 35, 35,0.8)"
+          cartIconColor= "rgba(35, 35, 35,0.8)"
+          profileIconColorHover= "#eb4034"
+          searchIconColorHover= "#eb4034"
+          cartIconColorHover= "#eb4034"
+          cartIconMargin="1vmax"
+          link1Family="cursive"
+        
         
       />
     </>
