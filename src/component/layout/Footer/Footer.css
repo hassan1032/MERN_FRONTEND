@@ -50,3 +50,11 @@ footer div .title{
         color: white;
         padding-bottom: 17px;
 }
+.service a{
+    text-decoration: none;
+    color: white;
+}
+.company a{
+    text-decoration: none;
+    color: white;
+}

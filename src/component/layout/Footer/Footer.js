@@ -10,33 +10,34 @@ const Footer = () => {
         <div>
           <div className="title">SERVICE</div>
           <div className="service">
-            <a>Track Order</a>
-            <a>Return Order</a>
-            <a>Track Order</a>
-            <a>Contact Us</a>
+            <a href="#">Track Order</a>
+            <a href="#">Return Order</a>
+            <a href="#">Track Order</a>
+            <a href="#">Contact Us</a>
           </div>
         </div>
         <div>
           <div className="title">COMPANY</div>
           <div className="company">
-            <a>Track Order</a>
-            <a>Return Order</a>
-            <a>Track Order</a>
-            <a>Contact Us</a>
+            <a href="#">Track Order</a>
+            <a href="#">Return Order</a>
+            <a href="#">Track Order</a>
+            <a href="#">Contact Us</a>
           </div>
         </div>
         <div>
           <div className="title">CONNECT WITH US</div>
-          <a href="" className="social">
+          <a href="https://www.instagram.com/_iam__pathan_?igsh=MWxwZzU1dmg0ZjV5cQ==" className="social">
             <img
               width="35"
               height="35"
               src="https://img.icons8.com/color/48/instagram-new--v1.png"
+              
               alt="instagram-new--v1"
             />
             Instagram
           </a>
-          <a href="" className="social">
+          <a href="https://www.linkedin.com/in/hassan-khan-2b0022229/" className="social">
             <img
               width="35"
               height="35"
@@ -45,7 +46,7 @@ const Footer = () => {
             />
             Linkedin
           </a>
-          <a href="" className="social">
+          <a href="https://github.com/hassan1032" className="social">
             <img
               width="35"
               height="35"
@@ -56,7 +57,7 @@ const Footer = () => {
           </a>
         </div>
         <div>
-          <img src={lo} className="logo2" />
+          <img src={lo} className="logo2" alt="Logo"/>
           <span>Created By:Hassan Khan</span>
         </div>
       </footer>
