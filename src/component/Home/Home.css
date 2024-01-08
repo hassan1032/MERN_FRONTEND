@@ -59,6 +59,14 @@
 
 
 }
+.container{
+    display: flex;
+    margin: 2vmax auto;
+    width: 80vw;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+}
 .productCard{
     width: 18vmax;
     display: flex;
@@ -76,6 +84,7 @@
 .productCard >div{
     margin: 0.5vmax;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
 }
 
