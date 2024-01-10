@@ -14,13 +14,14 @@
  const Product = ( {product}) => {
    return (
     <>
-     <Link className='productCard' to={product._id}>
-      <img src={product.images[0].url} alt={product.name}/>
+     <Link className='productCard' to={product}>
+      <img src={product.img}/>
       <p>{product.name}</p>
+      <p>{product.price}</p>
       <div>
         <ReactStars {...options}/>
         <span>(256 Reviews)</span>
-        <span>{product.price}</span>
+        {/* <span>{products.price}</span> */}
       </div>
       
      </Link>

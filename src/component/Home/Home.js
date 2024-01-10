@@ -1,55 +1,41 @@
-import React, { Fragment, useEffect } from 'react'
-import { CgMouse} from "react-icons/cg";
-import Product from "./Product.js"
-import "./Home.css"
-import MetaData from '../layout/MetaData.js';
-import { getProduct} from "../../actions/productActions.js";
-import {  useDispatch} from "react-redux"
+import React, { Fragment, useEffect } from "react";
+import { CgMouse } from "react-icons/cg";
+import Product from "./Product.js";
+import "./Home.css";
+import MetaData from "../layout/MetaData.js";
+import { getProduct } from "../../actions/productActions.js";
+import { useSelector, useDispatch } from "react-redux";
 
-const product ={
-    name:"Blue Tshirt",
-    images:[{url: "https://modone.com/eng_pl_Mens-plain-t-shirt-S1323-light-blue-15421_1.jpg"}],
-    price: "₹300",
-    _id:"Hassan khan",
-};
 const Home = () => {
   const dispatch = useDispatch();
-  useEffect(()=>{
+
+  const { loading, error, products, productsCount } = useSelector(
+    (state) => state.products
+  );
+  console.log("products on home>>>>>",products)
+  useEffect(() => {
     dispatch(getProduct());
-  },[dispatch])
+  }, [dispatch]);
   return (
-     <Fragment>
+    <Fragment>
+      <MetaData title="HK Mart" />
 
-      <MetaData title="HK Mart"/>
-
-     <div className='banner'>
+      <div className="banner">
         <p>Welcome To HK mart</p>
         <h1>Find The Amazing Products Below</h1>
         <a href="#container">
-        <button>
-            Scroll <CgMouse/>
-        </button>
+          <button>
+            Scroll <CgMouse />
+          </button>
         </a>
-        
-     </div>
+      </div>
 
-       <h2 className='homeHeading'>Feature Of Products</h2>
-       <div className='container' id="container">
-         {/* <Product product={product}/> */}
-         { <Product product={product}/>}
-         { <Product product={product}/>}
-         { <Product product={product}/>}
-         { <Product product={product}/>}
-         { <Product product={product}/>}
-         { <Product product={product}/>}
-         { <Product product={product}/>}
-         { <Product product={product}/>}
-         { <Product product={product}/>}
+      <h2 className="homeHeading">Feature Of Products</h2>
+      <div className="container" id="container">
+        {products &&products.length >0 && products.map((pro) => <Product product={pro} />)}
+      </div>
+    </Fragment>
+  );
+};
 
-
-       </div>
-  </Fragment>
-  )
-}
-
-export default Home
+export default Home;

@@ -10,19 +10,19 @@ const Footer = () => {
         <div>
           <div className="title">SERVICE</div>
           <div className="service">
-            <a href="#">Track Order</a>
-            <a href="#">Return Order</a>
-            <a href="#">Track Order</a>
-            <a href="#">Contact Us</a>
+            <a href="/#">Track Order</a>
+            <a href="/#">Return Order</a>
+            <a href="/#">Track Order</a>
+            <a href="/#">Contact Us</a>
           </div>
         </div>
         <div>
           <div className="title">COMPANY</div>
           <div className="company">
-            <a href="#">Track Order</a>
-            <a href="#">Return Order</a>
-            <a href="#">Track Order</a>
-            <a href="#">Contact Us</a>
+            <a href="/#">Track Order</a>
+            <a href="/#">Return Order</a>
+            <a href="/#">Track Order</a>
+            <a href="/#">Contact Us</a>
           </div>
         </div>
         <div>
