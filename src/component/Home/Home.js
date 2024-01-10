@@ -12,7 +12,7 @@ const Home = () => {
   const { loading, error, products, productsCount } = useSelector(
     (state) => state.products
   );
-  console.log("products on home>>>>>",products)
+  
   useEffect(() => {
     dispatch(getProduct());
   }, [dispatch]);
@@ -32,7 +32,7 @@ const Home = () => {
 
       <h2 className="homeHeading">Feature Of Products</h2>
       <div className="container" id="container">
-        {products &&products.length >0 && products.map((pro) => <Product product={pro} />)}
+        {products &&  products.map((pro) => <Product product={pro} />)}
       </div>
     </Fragment>
   );
