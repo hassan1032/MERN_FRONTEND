@@ -18,6 +18,7 @@ const Home = () => {
   }, [dispatch]);
   return (
     <Fragment>
+      {loading ? "loading": <Fragment>
       <MetaData title="HK Mart" />
 
       <div className="banner">
@@ -34,6 +35,7 @@ const Home = () => {
       <div className="container" id="container">
         {products &&  products.map((pro) => <Product product={pro} />)}
       </div>
+    </Fragment>}
     </Fragment>
   );
 };
