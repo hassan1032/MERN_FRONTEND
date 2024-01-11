@@ -6,19 +6,22 @@ import MetaData from "../layout/MetaData.js";
 import { getProduct } from "../../actions/productActions.js";
 import { useSelector, useDispatch } from "react-redux";
 
+
 const Home = () => {
   const dispatch = useDispatch();
 
   const { Loading, error, products, productsCount } = useSelector(
     (state) => state.products
   );
+  
+
 
   useEffect(() => {
     dispatch(getProduct());
   }, [dispatch]);
   return (
     <Fragment>
-      {Loading ? (
+      {Loading? (
         "loading"
       ) : (
         <Fragment>
