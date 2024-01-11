@@ -30,5 +30,6 @@ export const productReducer = (state = { products: [] }, action) => {
       };
     default:
       return state;
+      console.log("Hassan khan")
   }
 };
