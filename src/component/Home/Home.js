@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 const Home = () => {
   const dispatch = useDispatch();
 
-  const { loading, error, products, productsCount } = useSelector(
+  const { isLoading, error, products, productsCount } = useSelector(
     (state) => state.products
   );
   
@@ -18,7 +18,7 @@ const Home = () => {
   }, [dispatch]);
   return (
     <Fragment>
-      {loading ? "loading": <Fragment>
+     {isLoading ? 'Loading...' :<Fragment>
       <MetaData title="HK Mart" />
 
       <div className="banner">
