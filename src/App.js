@@ -6,6 +6,7 @@ import WebFont from 'webfontloader';
 import React from "react";
 import Footer from "./component/layout/Footer/Footer.js"
 import Home from "./component/Home/Home.js"
+import Loader from './component/layout/Loader/Loader.js';
 function App() {
   React.useEffect(()=>{
     WebFont.load({
@@ -18,11 +19,14 @@ function App() {
    <>
       <Router>
       <Header/>
+      
       <Routes>
        <Route extact path="/" Component={Home}/>
+       <Route extact path="/sad" Component={Loader}/>
        </Routes>
-      <Footer/>
+       <Footer/>
       </Router>
+     
 
    </>
   );
