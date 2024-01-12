@@ -35,12 +35,12 @@ export const getProductDetails = (id) => async (dispatch) => {
     const { data } = await axios.get(`http://localhost:4000/api/v1/product/${id}`);
     console.log(data)
     dispatch({
-      type: PRODUCT_DETAILS_SUCCESS,
-      payload: data.product,
+      type: All_PRODUCT_SUCCESS,
+      payload: data,
     });
   } catch (error) {
     dispatch({
-      type: PRODUCT_DETAILS_FAIL,
+      type: All_PRODUCT_FAIL,
       payload: error.response.data.message,
     });
   }

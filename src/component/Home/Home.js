@@ -3,7 +3,7 @@ import { CgMouse } from "react-icons/cg";
 import Product from "./Product.js";
 import "./Home.css";
 import MetaData from "../layout/MetaData.js";
-import { getProduct } from "../../actions/productActions.js";
+import { getProduct, getProductDetails } from "../../actions/productActions.js";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader.js";
 import {useAlert} from "react-alert"
@@ -13,7 +13,7 @@ const Home = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
 
-  const { Loading, error, products, productsCount } = useSelector(
+  const { loading, error, products, productsCount } = useSelector(
     (state) => state.products
   );
   
@@ -24,11 +24,14 @@ const Home = () => {
       return alert.error(error);
     }
     dispatch(getProduct());
+    //dispatch(getProductDetails());
+
   }, [dispatch,error,alert]);
+  console.log("gggg>>>",loading)
   return (
     <Fragment>
       
-      {Loading? (
+      {loading? (
         <Loader/>
       ) : (
         <Fragment>
@@ -46,7 +49,7 @@ const Home = () => {
 
           <h2 className="homeHeading">Feature Of Products</h2>
           <div className="container" id="container">
-            {products && products.map((pro) => <Product product={pro} />)}
+            {products && products.map((product) => <Product product={product} />)}
           </div>
         </Fragment>
       )}
