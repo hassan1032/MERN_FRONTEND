@@ -22,7 +22,7 @@ function App() {
       
       <Routes>
        <Route extact path="/" Component={Home}/>
-       <Route extact path="/sad" Component={Loader}/>
+       
        </Routes>
        <Footer/>
       </Router>

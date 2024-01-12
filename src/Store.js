@@ -1,19 +1,26 @@
-
-import {  legacy_createStore as createStore, combineReducers, applyMiddleware } from "redux";
-import {thunk} from "redux-thunk"
+import {
+  legacy_createStore as createStore,
+  combineReducers,
+  applyMiddleware,
+} from "redux";
+import { thunk } from "redux-thunk";
 // import { composeWithDevTools } from "redux-devtools-extension";
-import { productReducer } from "./reducer/productReducer";
+import {
+  productReducer,
+  productDetailsReducer,
+} from "./reducer/productReducer";
 
 const reducer = combineReducers({
-    products: productReducer,
-})
+  products: productReducer,
+  productDetails: productDetailsReducer,
+});
 
 let initialState = {};
 
 const middleware = [thunk];
 const store = createStore(
-    reducer,
-    initialState,
-    applyMiddleware(...middleware)
-)
+  reducer,
+  initialState,
+  applyMiddleware(...middleware)
+);
 export default store;
