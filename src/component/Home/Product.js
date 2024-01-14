@@ -15,15 +15,15 @@
    
    return (
     <>
-     <Link className='productCard' to={product}>
+     <Link className='productCard' to={`/product/${product._id}`}>
       <img src={product.image[0].url}/>
       <p>{product.name}</p>
-      <p>{product.description}</p>
+      {/* <p>{product.description}</p> */}
       <div>
-        <ReactStars {...options}/>
-        <span>({product.numOfReviews})</span>
-         <span>{`₹${product.price}`}</span> 
+        <ReactStars {...options}/>{" "}
+        <span>({product.numOfReviews} Reviews)</span>
       </div>
+      <span>{`₹${product.price}`}</span> 
       
      </Link>
      </>

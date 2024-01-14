@@ -3,7 +3,7 @@ import { CgMouse } from "react-icons/cg";
 import Product from "./Product.js";
 import "./Home.css";
 import MetaData from "../layout/MetaData.js";
-import { getProduct, getProductDetails } from "../../actions/productActions.js";
+import { getProduct } from "../../actions/productActions.js";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader.js";
 import {useAlert} from "react-alert"
@@ -27,7 +27,6 @@ const Home = () => {
     //dispatch(getProductDetails());
 
   }, [dispatch,error,alert]);
-  console.log("gggg>>>",loading)
   return (
     <Fragment>
       
