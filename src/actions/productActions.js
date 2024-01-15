@@ -31,13 +31,19 @@ export const getProduct = () => async (dispatch) => {
 
 export const getProductDetails = (id) => async (dispatch) => {
   try {
+    
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
     const { data } = await axios.get(`http://localhost:4000/api/v1/product/${id}`);
     console.log(data)
-    dispatch({
-      type: PRODUCT_DETAILS_SUCCESS,
-      payload: data.product,
-    });
+    const {success,p_roduct}=data || {}
+    if(success && p_roduct){
+      
+      dispatch({
+        type: PRODUCT_DETAILS_SUCCESS,
+        payload: p_roduct,
+      });
+    }
+    
   } catch (error) {
     dispatch({
       type: PRODUCT_DETAILS_FAIL,

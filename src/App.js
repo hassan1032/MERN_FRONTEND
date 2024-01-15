@@ -17,13 +17,14 @@ function App() {
   },[]);
   return (
    <>
-   <h1>pass push</h1>
+   
       <Router>
       <Header/>
       
       <Routes>
        <Route extact path="/" Component={Home}/>
-       <Route extact path="/product/:id" Component={ProductDetails}/>
+       <Route exact path="/product/:id" 
+          Component={ProductDetails} />
        
        </Routes>
        <Footer/>
