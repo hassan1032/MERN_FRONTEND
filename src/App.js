@@ -18,7 +18,7 @@ function App() {
     <>
       <Router>
         <Header />
-
+        <h1>Hassan khan</h1>
         <Routes>
           <Route extact path="/" Component={Home} />
           <Route exact path="/product/:id" Component={ProductDetails} />

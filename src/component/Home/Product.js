@@ -21,7 +21,7 @@
       {/* <p>{product.description}</p> */}
       <div>
         <ReactStars {...options}/>{" "}
-        <span>({product.numOfReviews} Reviews)</span>
+        <span>({product.numofReviews} Reviews)</span>
       </div>
       <span>{`₹${product.price}`}</span> 
       
