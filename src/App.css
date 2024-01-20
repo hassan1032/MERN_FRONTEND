@@ -3,3 +3,24 @@
     scroll-behavior: smooth;
 
 }
+
+
+/* firefox */
+
+input[type="number"]{
+    -moz-appearance: textfield;
+}
+
+/* chrome Safari Edge Opera for This use only arrrow button */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin:0;
+}
+
+.greenColor{
+    color:green;
+
+}
+.redColor{}
+
