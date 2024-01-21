@@ -11,7 +11,7 @@ const options ={
     isHalf: true,
 }
   return (
-    <div>
+    <div className='reviewsard'>
       <img src={Profilepng} alt="User"/>
       <p>{review.name}</p>
       <ReactStars {...options}/>
