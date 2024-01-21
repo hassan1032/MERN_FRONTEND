@@ -137,6 +137,41 @@
     background-color: rgb(190, 69, 50);
     transform: scale(1.1);
 }
+.reviewsHeading{
+  color:rgb(245, 9, 9);
+  font: 500 1.4vmax "Roboto";
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,0.220);
+  padding: 1vmax;
+  width: 20vmax;
+  margin: auto;
+  margin-bottom: 4vmax;
+}
+
+.reviewsard{
+  flex: none;
+  box-shadow: 0 0 6px rgb(227, 254, 21);
+  border: 1px solid rgb(110, 125, 254);
+  width: 30vmax;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1vmax;
+  padding: 3vmax;
+}
+.reviewsard > p{
+  color: rgba(0,0,0, 0.447);
+  font: 600 0.9vmax "Cursive";
+
+}
+.reviewsard > img{
+  width: 5vmax;
+}
+.reviewsard > span{
+  color: rgba(0,0,0, 0.447);
+  font: 300 0.8vmax cursive;
+}
+
 
 @media screen and (max-width: 600px) {
      .ProductDetails{
