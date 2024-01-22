@@ -15,7 +15,7 @@
     align-items: start;
     padding: 2vmax;
     box-sizing: border-box;
-    border: 1px solid white;
+    border: 1px solid rgb(244, 202, 202);
   }
   
   .ProductDetails > div:last-child {
@@ -147,6 +147,10 @@
   margin: auto;
   margin-bottom: 4vmax;
 }
+.reviews{
+  display: flex;
+  overflow: auto;
+}
 
 .reviewsard{
   flex: none;
@@ -170,6 +174,12 @@
 .reviewsard > span{
   color: rgba(0,0,0, 0.447);
   font: 300 0.8vmax cursive;
+}
+
+.noReviews{
+  font: 400 1.3vmax "Gill Sans";
+  text-align: center;
+  color: rgba(233, 8, 8, 0.938);
 }
 
 
