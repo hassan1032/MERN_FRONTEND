@@ -1,60 +1,10 @@
-footer{
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    background: black;
-    height: 60vh;
-    /* position: relative;
-    top: 237px; */
-}
-footer div{
-    color: white;
-    height: 268px;
-    width: 25%;
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 20px;
-    flex-direction: column;
-    align-items: center;
-}
-footer div .title{
-    color: #fdd835;
-    font-size: 16px;
-    letter-spacing: 1px;
-    word-spacing: 5px;
-    height: 0px;
-    width: 100%;
-    padding-bottom: 20px;
-}
-.social{
-    display: flex;
-    /* align-content: center; */
-    align-items: center;
-    text-decoration: none;
-    color: white;
-    font-size: 14px;
-}
 .logo2{
-    width: 56%;
+    width: 70%;
+    border-radius: 100%;
 }
-.copyright{
-    background: black;
-    height: 20px;
-    margin-top: -20px;
+.menuBurger{
+    height: 3.8vmax !important;
 }
-.copyright p{
-        /* display: flex; */
-        text-align: center;
-        background: black;
-        color: white;
-        padding-bottom: 17px;
-}
-.service a{
+.text-dark{
     text-decoration: none;
-    color: white;
-}
-.company a{
-    text-decoration: none;
-    color: white;
 }
