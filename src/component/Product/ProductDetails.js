@@ -8,7 +8,7 @@ import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js";
 import Loader from "../layout/Loader/Loader.js";
 import {useAlert} from "react-alert"
-const ProductDetails = ({ match }) => {
+const ProductDetails = () => {
   const { id } = useParams();
   const alert = useAlert
 

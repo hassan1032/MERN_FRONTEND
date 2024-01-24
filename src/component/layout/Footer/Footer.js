@@ -60,7 +60,7 @@ const Footer = () => {
                   <h6 className="text-uppercase fw-bold">Company name</h6>
                   <hr
                     className="mb-4 mt-0 d-inline-block mx-auto"
-                    style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
+                    // style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
                   />
                   <p>
                     <img src={lo} className="logo2" alt="Logo" />
@@ -72,7 +72,7 @@ const Footer = () => {
                   <h6 className="text-uppercase fw-bold">SERVICE</h6>
                   <hr
                     className="mb-4 mt-0 d-inline-block mx-auto"
-                    style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
+                    // style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
                   />
                   <p>
                     <a href="#!" className="text-dark">
@@ -100,7 +100,7 @@ const Footer = () => {
                   <h6 className="text-uppercase fw-bold">Useful links</h6>
                   <hr
                     className="mb-4 mt-0 d-inline-block mx-auto"
-                    style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
+                    // style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
                   />
                   <p>
                     <a href="#!" className="text-dark">
@@ -129,7 +129,7 @@ const Footer = () => {
                   <h6 className="text-uppercase fw-bold">Contact</h6>
                   <hr
                     className="mb-4 mt-0 d-inline-block mx-auto"
-                    style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
+                    // style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
                   />
                   <p>
                     <i className="fas fa-home mr-3" /> Lucknow Tedipuliya S-70 Adil Nagar
