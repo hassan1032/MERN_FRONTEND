@@ -107,7 +107,9 @@
     font-weight: 600;
 
   }
-
+.filterBox > fieldset{
+    border: 1px solid rgb(228, 115, 115);
+}
   @media screen and (max-width: 600px){
     .filterBox{
         width: 20vmax;
