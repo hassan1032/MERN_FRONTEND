@@ -9,6 +9,8 @@
 
 }
 .products{
+    margin-left: 135px;
+    width: 75%;
     display: flex;
     flex-wrap: wrap;
     padding: 0 5vmax;
@@ -63,5 +65,57 @@
   
   .pageLinkActive {
     color: white;
+  }
+
+
+  /* css of The SLider in Typography */
+
+  .filterBox{
+    width: 10vmax;
+    position: absolute;
+    top: 8vmax;
+    left: 5vmax;
+  }
+
+  .categoryBox{
+    padding: 0%;
+  }
+  
+  .category-link{
+    list-style: none;
+    color: rgba(67, 21, 249, 0.5);
+    font: 400 0.8vmax "Cursive";
+    margin: 0.4vmax;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.5s;
+    font-weight: 500;
+    color: blue;
+    font-family: 'Roboto';
+
+  }
+  .category-link:hover{
+    color: rgb(126, 23, 4);
+  }
+  .MuiTypography-body1{
+    font-size: 1rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+    color: black;
+    font-weight: 600;
+
+  }
+
+  @media screen and (max-width: 600px){
+    .filterBox{
+        width: 20vmax;
+        position: static;
+        margin: auto;
+    }
+  }
+  .page-link{
+    font: 250 1.5vmax "Roboto";
   }
   
