@@ -9,7 +9,7 @@ import Pagination from "react-js-pagination";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 
-const categories =[
+const categories = [
   "Laptop",
   "Footwear",
   "Bottom",
@@ -17,8 +17,7 @@ const categories =[
   "Attire",
   "Camera",
   "SmartPhones",
-  
-]
+];
 
 const Products = () => {
   const { keyword } = useParams();
@@ -26,6 +25,8 @@ const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 25000]);
   const [category, setcategory] = useState("");
+  const [ratings, setRatings]=useState(0)
+
   const {
     products,
     loading,
@@ -40,14 +41,12 @@ const Products = () => {
     setCurrentPage(e);
   };
   const priceHandler = (Event, newPrice) => {
-    console.log(newPrice);
     setPrice(newPrice);
   };
 
   useEffect(() => {
-    
-    dispatch(getProduct(keyword, currentPage, price));
-  }, [dispatch, keyword, currentPage, price]);
+    dispatch(getProduct(keyword, currentPage, price, category));
+  }, [dispatch, keyword, currentPage, price, category]);
 
   let count = filteredProductsCount;
 
@@ -69,7 +68,7 @@ const Products = () => {
             <Slider
               value={price}
               onChange={priceHandler}
-              valueLabelDisplay="on"
+              valueLabelDisplay="auto"
               aria-labelledby="range-slider"
               main={0}
               max={25000}
@@ -87,6 +86,20 @@ const Products = () => {
                 </li>
               ))}
             </ul>
+            <fieldset>
+              <Typography component="legend"> Ratings Above</Typography>
+
+              <Slider
+                value={ratings}
+                onChange={(e, newRating) => {
+                  setRatings(newRating);
+                }}
+                aria-labelledby="continuous-slider"
+                min={0}
+                max={5}
+                valueLabelDisplay="auto"
+              />
+            </fieldset>
           </div>
 
           {resultperpage < count && (

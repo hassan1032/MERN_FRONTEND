@@ -6,7 +6,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <>
-      <div className="">
+      <div className="mainP">
        
         <footer
           className="text-center text-lg-start text-dark"
