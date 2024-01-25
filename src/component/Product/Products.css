@@ -66,14 +66,16 @@
   .pageLinkActive {
     color: white;
   }
-
+  .pageLinkActive {
+    color: black;
+}
 
   /* css of The SLider in Typography */
 
   .filterBox{
     width: 10vmax;
     position: absolute;
-    top: 8vmax;
+    top: 10vmax;
     left: 5vmax;
   }
 
@@ -100,16 +102,27 @@
   .MuiTypography-body1{
     font-size: 1rem;
     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 400;
+    font-weight: 700 !important;
     line-height: 1.5;
     letter-spacing: 0.00938em;
     color: black;
     font-weight: 600;
 
   }
-.filterBox > fieldset{
-    border: 1px solid rgb(228, 115, 115);
-}
+  /* .MuiSlider-root{
+    margin-left: -26px;
+  } */
+  .productCard{
+    width: 25%;
+    height: 320px
+  }
+  .productCard > img {
+    width: 100%;
+    height: 140px;
+  }
+  .products {
+    width: 89%;
+  }
   @media screen and (max-width: 600px){
     .filterBox{
         width: 20vmax;
@@ -120,4 +133,3 @@
   .page-link{
     font: 250 1.5vmax "Roboto";
   }
-  
