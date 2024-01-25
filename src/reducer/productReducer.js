@@ -23,7 +23,8 @@ export const productReducer = (
         loading: false,
         products: action.payload.products,
         productCounts: action.payload.productCounts,
-        resultperpage: action.payload.resultperpage
+        resultperpage: action.payload.resultperpage,
+        filteredProductsCount:action.payload.filteredProductsCount
       };
     case All_PRODUCT_FAIL:
       return {

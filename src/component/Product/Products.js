@@ -6,22 +6,51 @@ import Loader from "../layout/Loader/Loader";
 import ProductCard from "../Home/Product";
 import { useParams } from "react-router-dom";
 import Pagination from "react-js-pagination";
+import Slider from "@material-ui/core/Slider";
+import Typography from "@material-ui/core/Typography";
+
+const categories =[
+  "Laptop",
+  "Footwear",
+  "Bottom",
+  "Tops",
+  "Attire",
+  "Camera",
+  "SmartPhones",
+  
+]
 
 const Products = () => {
   const { keyword } = useParams();
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const { products, loading, error, productCounts, resultperpage } =
-    useSelector((state) => state.products);
+  const [price, setPrice] = useState([0, 25000]);
+  const [category, setcategory] = useState("");
+  const {
+    products,
+    loading,
+    error,
+    productCounts,
+    resultperpage,
+    filteredProductsCount,
+  } = useSelector((state) => state.products);
 
   // const keyword = match.params.keyword;
   const setCurrentPageNo = (e) => {
     setCurrentPage(e);
-  };  
+  };
+  const priceHandler = (Event, newPrice) => {
+    console.log(newPrice);
+    setPrice(newPrice);
+  };
+
   useEffect(() => {
-    dispatch(getProduct(keyword, currentPage));
-  }, [dispatch, keyword, currentPage]);
-  console.log("products =>>", products, loading, productCounts, resultperpage);
+    
+    dispatch(getProduct(keyword, currentPage, price));
+  }, [dispatch, keyword, currentPage, price]);
+
+  let count = filteredProductsCount;
+
   return (
     <Fragment>
       {loading ? (
@@ -35,23 +64,49 @@ const Products = () => {
                 <ProductCard key={product._id} product={product} />
               ))}
           </div>
-
-          <div className="paginationBox">
-            <Pagination
-              activePage={currentPage}
-              itemsCountPerPage={resultperpage}
-              totalItemsCount={productCounts}
-              onChange={setCurrentPageNo}
-              nextPageText="Next"
-              prevPageText="Prev"
-              firstPageText="1st"
-              lastPageText="Last"
-              itemClass="page-item"
-              linkClass="page-link"
-              activeClass="pageItemActive"
-              activeLinkClass="pageLinkActive"
+          <div className="filterBox">
+            <Typography>Price</Typography>
+            <Slider
+              value={price}
+              onChange={priceHandler}
+              valueLabelDisplay="on"
+              aria-labelledby="range-slider"
+              main={0}
+              max={25000}
             />
+
+            <Typography>Categories</Typography>
+            <ul className="categoryBox">
+              {categories.map((category) => (
+                <li
+                  className="category-link"
+                  key={category}
+                  onClick={() => setcategory(category)}
+                >
+                  {category}
+                </li>
+              ))}
+            </ul>
           </div>
+
+          {resultperpage < count && (
+            <div className="paginationBox">
+              <Pagination
+                activePage={currentPage}
+                itemsCountPerPage={resultperpage}
+                totalItemsCount={productCounts}
+                onChange={setCurrentPageNo}
+                nextPageText="Next"
+                prevPageText="Prev"
+                firstPageText="1st"
+                lastPageText="Last"
+                itemClass="page-item"
+                linkClass="page-link"
+                activeClass="pageItemActive"
+                activeLinkClass="pageLinkActive"
+              />
+            </div>
+          )}
         </Fragment>
       )}
     </Fragment>
