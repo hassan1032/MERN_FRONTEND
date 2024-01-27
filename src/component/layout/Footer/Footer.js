@@ -142,6 +142,7 @@ const Footer = () => {
                   </p>
                   <p>
                     <i className="fas fa-print mr-3" /> + 01 234 567 89
+                    <h6>CreatedBy: Hassan khan</h6>
                   </p>
                 </div>
               </div>

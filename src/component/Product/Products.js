@@ -8,6 +8,8 @@ import { useParams } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
+import {useAlert} from "react-alert"
+import MetaData from "../layout/MetaData.js";
 
 const categories = [
   "Laptop",
@@ -22,6 +24,7 @@ const categories = [
 const Products = () => {
   const { keyword } = useParams();
   const dispatch = useDispatch();
+  const alert = useAlert();
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 25000]);
   const [category, setcategory] = useState("");
@@ -45,8 +48,13 @@ const Products = () => {
   };
 
   useEffect(() => {
-    dispatch(getProduct(keyword, currentPage, price, category));
-  }, [dispatch, keyword, currentPage, price, category]);
+    if(error){
+      alert.error(error);
+      dispatch(clearErrors())
+    }
+
+    dispatch(getProduct(keyword, currentPage, price, category,ratings));
+  }, [dispatch, keyword, currentPage, price, category,ratings, alert, error]);
 
   let count = filteredProductsCount;
 
@@ -56,6 +64,7 @@ const Products = () => {
         <Loader />
       ) : (
         <Fragment>
+          <MetaData title={`Product---> HKmart`}/>
           <h2 className="productsHeding">Products</h2>
           <div className="products">
             {products &&
