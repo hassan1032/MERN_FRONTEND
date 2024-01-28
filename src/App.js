@@ -28,7 +28,8 @@ function App() {
           <Route exact path="/products" Component={Products} />
           <Route  path="/products/:keyword" Component={Products} />
           <Route exact path="/search" Component={Search} />
-          <Route exact path="/login " Component={LoginSignUp} />
+          <Route  exact path="/login" Component={LoginSignUp} />
+          {/* <Route exact path="/login " Component={LoginSignUp} /> */}
         </Routes>
         <Footer />
       </Router>
