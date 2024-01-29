@@ -1,35 +1,47 @@
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./LoginSignUp.css";
 import Loader from "../layout/Loader/Loader";
 import { Link } from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
-const LoginSignUp = () => {
+import { useNavigate } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
+import { clearErrors, login } from "../../actions/userAction";
+import { useAlert } from "react-alert";
+const LoginSignUp = ({history}) => {
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const { error, loading, isAuthenticated } = useSelector(
+    (state) => state.user
+  );
+
   const loginTab = useRef(null);
   const registerTab = useRef(null);
   const switcherTab = useRef(null);
+  const navigate = useNavigate();
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
   const [user, setUser] = useState({
     name: "",
-    email:"",
-    password:"",
+    email: "",
+    password: "",
   });
 
-  const { name, email, password} = user;
+  const { name, email, password } = user;
 
   const [avatar, setAvatar] = useState();
   const [avatarPreview, setAvatarPreview] = useState("/profile.png");
   const loginSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Form is Submited");
+    dispatch(login(loginEmail, loginPassword));
   };
 
-  const registerSubmit = (e) =>{
+  const registerSubmit = (e) => {
     e.preventDefault();
 
     const myForm = new FormData();
@@ -56,9 +68,15 @@ const LoginSignUp = () => {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   };
-
-
- 
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+    if (isAuthenticated){
+      navigate("/account")
+    }
+  }, [dispatch, error, alert, navigate,isAuthenticated]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
@@ -79,7 +97,11 @@ const LoginSignUp = () => {
 
   return (
     <Fragment>
-     <div className="LoginSignUpContainer">
+      {loading ? (
+        <Loader />
+      ) : (
+        <Fragment>
+          <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox">
               <div>
                 <div className="login_signUp_toggle">
@@ -163,9 +185,10 @@ const LoginSignUp = () => {
                 </div>
                 <input type="submit" value="Register" className="signUpBtn" />
               </form>
-    
-        </div>
-      </div>
+            </div>
+          </div>
+        </Fragment>
+      )}
     </Fragment>
   );
 };
