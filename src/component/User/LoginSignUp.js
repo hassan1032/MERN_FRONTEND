@@ -8,7 +8,7 @@ import FaceIcon from "@material-ui/icons/Face";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, login } from "../../actions/userAction";
+import { clearErrors, login,register } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 const LoginSignUp = ({history}) => {
   const dispatch = useDispatch();
@@ -50,7 +50,7 @@ const LoginSignUp = ({history}) => {
     myForm.set("email", email);
     myForm.set("password", password);
     myForm.set("avatar", avatar);
-    console.log("SingUp form  Submited");
+    dispatch(register(myForm)) 
   };
   const registerDataChange = (e) => {
     if (e.target.name === "avatar") {
