@@ -51,16 +51,20 @@ const UserOptions = ({ user }) => {
         onOpen={() => setOpen(true)}
         open={open}
         direction="down"
+        className="speedDial"
         icon={
           <img
             className="speedDialIcon"
             src={user.avatar.url ? user.avatar.url : "Profile.png"}
             alt="Profile"
+
           />
         }
       >
         {options.map((item) => (
           <SpeedDialAction
+          key={item.name}
+
             icon={item.icon}
             tooltipTitle={item.name}
             onClick={item.func}
