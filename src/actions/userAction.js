@@ -18,7 +18,8 @@ export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
 
-    const config = { headers: { "Content-Type": "application/json" } };
+    const config = { headers: { "Content-Type": "application/json",
+    } };
 
     const { data } = await axios.post(
       // console.log(data.user)
@@ -26,8 +27,11 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     );
-
+    if(data?.success && data?.token){
+       localStorage.setItem('token',data?.token)
+    }
     dispatch({ type: LOGIN_SUCCESS, payload: data.user });
+
     console.log(data.user);
   } catch (error) {
     dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
@@ -64,7 +68,7 @@ export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/me`);
+    const { data } = await axios.get(`http://localhost:4000/api/v1/me`,{headers:{Authorization:`Bearer ${localStorage.getItem("token")}`} });
     
 
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
