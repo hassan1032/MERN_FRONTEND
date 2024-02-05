@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./component/layout/Header.js";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, useNavigate } from "react-router-dom";
 import WebFont from "webfontloader";
 import React from "react";
 import Footer from "./component/layout/Footer/Footer.js";
@@ -13,11 +13,20 @@ import store from "./Store.js";
 import { loadUser } from "./actions/userAction.js";
 import UserOptions from "./component/layout/Header/UserOptions.js";
 import { useSelector } from "react-redux";
-import Profile from "./component/User/Profile.js"
+import Profile from "./component/User/Profile.js";
 import Protected from "./component/Route/ProtectedRoute.js";
+import UpdateProfile from "./component/User/UpdateProfile.js";
+// import UpdateProfile from "./component/User/UpdateProfile";
+import ProtectedRoute from "./component/Route/ProtectedRoute";
+import { Navigate } from "react-router-dom";
+
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
+  // const PrivateRoute = ({ auth: , children }) => {
+  //   return isAuthenticated ? children : <Navigate to="/login" />;
+  // };
+  
 
   React.useEffect(() => {
     WebFont.load({
@@ -32,7 +41,7 @@ function App() {
       <Router>
         <Header />
         {isAuthenticated && <UserOptions user={user} />}
-        
+
         <Routes>
           <Route extact path="/" Component={Home} />
           <Route exact path="/product/:id" Component={ProductDetails} />
@@ -40,13 +49,29 @@ function App() {
           <Route path="/products/:keyword" Component={Products} />
           <Route exact path="/search" Component={Search} />
           <Route exact path="/login" Component={LoginSignUp} />
-          <Route exact path='/account' element={<Protected component={Profile} />} />
-          
-         
+          <Route
+            exact
+            path="/account"
+            element={<Protected component={Profile} />}
+          />
+              <Route
+            exact
+            path="/me/update"
+            element={<Protected component={UpdateProfile} />}
+          />
+          {/* <ProtectedRoute exact path="/me/update" component={UpdateProfile} /> */}
+
+          {/* <Route
+            path="/me/update"
+            element={
+              <PrivateRoute>
+                < UpdateProfile/>
+              </PrivateRoute>
+            }
+          /> */}
         </Routes>
         <Footer />
       </Router>
-      
     </>
   );
 }
