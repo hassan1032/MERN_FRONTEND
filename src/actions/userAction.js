@@ -14,7 +14,9 @@ import {
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_FAIL,
   UPDATE_PROFILE_SUCCESS,
-  UPDATE_PROFILE_RESET,
+  UPDATE_PASSWORD_FAIL,
+  UPDATE_PASSWORD_REQUEST,
+  UPDATE_PASSWORD_SUCCESS,
 } from "../constants/userConstants";
 import axios from "axios";
 
@@ -97,16 +99,20 @@ export const updateProfile = (userData) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_PROFILE_REQUEST });
 
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
 
     const { data } = await axios.put(
-      `http://localhost:4000/api/v1/me/update`,
+      `http://localhost:4000/api/v1//me/update`,
       userData,
       config
     );
 
-    dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.user });
-    console.log(data);
+    dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
   } catch (error) {
     dispatch({
       type: UPDATE_PROFILE_FAIL,
@@ -115,8 +121,35 @@ export const updateProfile = (userData) => async (dispatch) => {
   }
 };
 
+// Update The Passwoord
+
+export const updatePassword = (passwords) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_PASSWORD_REQUEST });
+
+    // const config = { headers: { "Content-Type": "application/json" } };
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
 
 
+    const { data } = await axios.put(
+      `http://localhost:4000/api/v1/password/update`,
+      passwords,
+      config
+    );
+
+    dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: data.success });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_PASSWORD_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
 
 // Clearing Error
 export const clearErrors = () => async (dispatch) => {

@@ -51,12 +51,12 @@ const UpdateProfile = () => {
         if (user) {
           setName(user.name);
           setEmail(user.email);
-          setAvatarPreview(user.avatar.url);
+          setAvatarPreview(user?.avatar?.url);
         }
     
         if (error) {
           alert.error(error);
-          dispatch(clearErrors());
+          dispatch(clearErrors()); 
         }
     
         if (isUpdated) {
