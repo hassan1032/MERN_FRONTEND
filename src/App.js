@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./component/layout/Header.js";
-import { Route, BrowserRouter as Router, Routes, useNavigate } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import WebFont from "webfontloader";
 import React from "react";
 import Footer from "./component/layout/Footer/Footer.js";
@@ -10,23 +10,20 @@ import Products from "./component/Product/Products.js";
 import Search from "./component/Product/Search.js";
 import LoginSignUp from "./component/User/LoginSignUp.js";
 import store from "./Store.js";
-import { loadUser } from "./actions/userAction.js";
+import { loadUser} from "./actions/userAction.js";
 import UserOptions from "./component/layout/Header/UserOptions.js";
 import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile.js";
 import Protected from "./component/Route/ProtectedRoute.js";
 import UpdateProfile from "./component/User/UpdateProfile.js";
-// import UpdateProfile from "./component/User/UpdateProfile";
-import ProtectedRoute from "./component/Route/ProtectedRoute";
-import { Navigate } from "react-router-dom";
+import UpdatePassword from "./constants/User/UpdatePassword.js"
+
+
 
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
-  // const PrivateRoute = ({ auth: , children }) => {
-  //   return isAuthenticated ? children : <Navigate to="/login" />;
-  // };
-  
+ 
 
   React.useEffect(() => {
     WebFont.load({
@@ -58,17 +55,13 @@ function App() {
             exact
             path="/me/update"
             element={<Protected component={UpdateProfile} />}
-          />
-          {/* <ProtectedRoute exact path="/me/update" component={UpdateProfile} /> */}
-
-          {/* <Route
-            path="/me/update"
-            element={
-              <PrivateRoute>
-                < UpdateProfile/>
-              </PrivateRoute>
-            }
-          /> */}
+         />
+          <Route
+            exact
+            path="/password/update"
+            element={<Protected component={UpdatePassword} />}
+         />
+         
         </Routes>
         <Footer />
       </Router>
