@@ -11,6 +11,10 @@ import {
   LOAD_USER_FAIL,
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_FAIL,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_RESET,
 } from "../constants/userConstants";
 import axios from "axios";
 
@@ -18,8 +22,7 @@ export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
 
-    const config = { headers: { "Content-Type": "application/json",
-    } };
+    const config = { headers: { "Content-Type": "application/json" } };
 
     const { data } = await axios.post(
       // console.log(data.user)
@@ -27,8 +30,8 @@ export const login = (email, password) => async (dispatch) => {
       { email, password },
       config
     );
-    if(data?.success && data?.token){
-       localStorage.setItem('token',data?.token)
+    if (data?.success && data?.token) {
+      localStorage.setItem("token", data?.token);
     }
     dispatch({ type: LOGIN_SUCCESS, payload: data.user });
 
@@ -64,19 +67,18 @@ export const register = (userData) => async (dispatch) => {
 
 // Load User
 export const loadUser = () => async (dispatch) => {
-  
   try {
     dispatch({ type: LOAD_USER_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:4000/api/v1/me`,{headers:{Authorization:`Bearer ${localStorage.getItem("token")}`} });
-    
+    const { data } = await axios.get(`http://localhost:4000/api/v1/me`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
 
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
   } catch (error) {
     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
   }
 };
-
 
 // The Code is Logout User
 
@@ -89,6 +91,31 @@ export const logout = () => async (dispatch) => {
     dispatch({ type: LOGOUT_FAIL, payload: error.response.data.message });
   }
 };
+
+// Update Profile  For The Code
+export const updateProfile = (userData) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_PROFILE_REQUEST });
+
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+    const { data } = await axios.put(
+      `http://localhost:4000/api/v1/me/update`,
+      userData,
+      config
+    );
+
+    dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.user });
+    console.log(data);
+  } catch (error) {
+    dispatch({
+      type: UPDATE_PROFILE_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+
 
 
 // Clearing Error

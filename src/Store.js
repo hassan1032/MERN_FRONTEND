@@ -9,12 +9,13 @@ import {
   productReducer,
   productDetailsReducer,
 } from "./reducer/productReducer";
-import { userReducer } from "./reducer/userReducer";
+import { profileReducer, userReducer } from "./reducer/userReducer";
 
 const reducer = combineReducers({
   products: productReducer,
   productDetails: productDetailsReducer,
   user: userReducer,
+  profile: profileReducer,
 });
 
 let initialState = {};
