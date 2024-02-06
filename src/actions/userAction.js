@@ -20,6 +20,9 @@ import {
   FORGOT_PASSWORD_REQUEST,
   FORGOT_PASSWORD_SUCCESS,
   FORGOT_PASSWORD_FAIL,
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAIL,
 } from "../constants/userConstants";
 import axios from "axios";
 
@@ -181,6 +184,39 @@ export const forgotPassword = (email) => async (dispatch) => {
     });
   }
 };
+
+// Reset The Password
+
+export const resetPassword = (token, passwords) => async (dispatch) => {
+  try {
+    dispatch({ type: RESET_PASSWORD_REQUEST });
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
+    
+      
+
+    // const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.put(
+      `http://localhost:4000/api/v1/password/reset/${token}`,
+      passwords,
+      config
+    );
+
+    dispatch({ type: RESET_PASSWORD_SUCCESS, payload: data.success });
+  } catch (error) {
+    dispatch({
+      type: RESET_PASSWORD_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
 
 // Clearing Error
 export const clearErrors = () => async (dispatch) => {
