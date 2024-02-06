@@ -17,6 +17,8 @@ import Profile from "./component/User/Profile.js";
 import Protected from "./component/Route/ProtectedRoute.js";
 import UpdateProfile from "./component/User/UpdateProfile.js";
 import UpdatePassword from "./constants/User/UpdatePassword.js"
+import ForgotPassword from "./component/User/ForgotPassword.js";
+import ResetPassword from "./component/User/ResetPassword.js"
 
 
 
@@ -46,6 +48,8 @@ function App() {
           <Route path="/products/:keyword" Component={Products} />
           <Route exact path="/search" Component={Search} />
           <Route exact path="/login" Component={LoginSignUp} />
+          <Route exact path="/password/forgot" Component={ForgotPassword} />
+          <Route exact path="/password/reset/:token" Component={ResetPassword} />
           <Route
             exact
             path="/account"
@@ -61,6 +65,8 @@ function App() {
             path="/password/update"
             element={<Protected component={UpdatePassword} />}
          />
+           
+         
          
         </Routes>
         <Footer />
