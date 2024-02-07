@@ -190,6 +190,8 @@ export const forgotPassword = (email) => async (dispatch) => {
 export const resetPassword = (token, passwords) => async (dispatch) => {
   try {
     dispatch({ type: RESET_PASSWORD_REQUEST });
+
+    // const config = { headers: { "Content-Type": "application/json" } };
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -197,16 +199,15 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
       },
     };
 
-    
-      
-
-    // const config = { headers: { "Content-Type": "application/json" } };
-
     const { data } = await axios.put(
       `http://localhost:4000/api/v1/password/reset/${token}`,
       passwords,
       config
     );
+    if (data?.success && data?.token) {
+      localStorage.setItem("token", data?.token);
+    }
+    dispatch({ type: LOGIN_SUCCESS, payload: data.user });
 
     dispatch({ type: RESET_PASSWORD_SUCCESS, payload: data.success });
   } catch (error) {
@@ -216,7 +217,6 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     });
   }
 };
-
 
 // Clearing Error
 export const clearErrors = () => async (dispatch) => {

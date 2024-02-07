@@ -68,7 +68,7 @@
   .detailsBlock-3-1-1 > button {
     border: none;
     background-color: rgba(0, 0, 0, 0.616);
-    padding: 0.5vmax;
+    padding: 3px;
     cursor: pointer;
     color: white;
     transition: all 0.5s;
@@ -79,11 +79,12 @@
   
   .detailsBlock-3-1-1 > input {
     border: none;
-    padding: 0.5vmax;
-    width: 1vmax;
+   
+    width: 17px;
     text-align: center;
     outline: none;
     font: 400 0.8vmax "Roboto";
+    padding: 3px;
     color: rgba(0, 0, 0, 0.74);
   }
   
