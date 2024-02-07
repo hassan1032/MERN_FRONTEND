@@ -7,12 +7,14 @@ import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import LockIcon from "@material-ui/icons/Lock";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const ResetPassword = ({ match }) => {
+const ResetPassword = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
-  const navigate= useNavigate()
+  const navigate= useNavigate();
+  const params = useParams();
+  // console.log('params', params)
 
   const { error, success, loading } = useSelector(
     (state) => state.forgotPassword
@@ -21,7 +23,7 @@ const ResetPassword = ({ match }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const resetPasswordSubmit = (e) => {
+  const resetPasswordSubmit = async(e) => {
     e.preventDefault();
 
     const myForm = new FormData();
@@ -29,7 +31,8 @@ const ResetPassword = ({ match }) => {
     myForm.set("password", password);
     myForm.set("confirmPassword", confirmPassword);
 
-    dispatch(resetPassword(match?.params?.token, myForm));
+    dispatch(resetPassword(params?.token, myForm));
+  //  console.log("response>>>>",res)
   };
 
   useEffect(() => {
