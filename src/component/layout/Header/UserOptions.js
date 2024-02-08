@@ -7,13 +7,12 @@ import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import { useNavigate } from "react-router-dom";
-import { useAlert } from "react-alert";
 import { logout } from "../../../actions/userAction";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 const UserOptions = ({ user }) => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-  const alert = useAlert();
   const dispatch = useDispatch();
 
   const options = [
@@ -41,7 +40,7 @@ const UserOptions = ({ user }) => {
   }
   function logoutUser() {
     dispatch(logout());
-    alert.success("Logout Is Successfuly");
+    toast.success("Logout Is Successfuly");
   }
 
   return (

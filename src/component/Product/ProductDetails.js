@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect , useState} from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,10 +7,11 @@ import { useParams } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js";
 import Loader from "../layout/Loader/Loader.js";
-import {useAlert} from "react-alert"
+import { addItemsToCart} from "../../actions/cartAction.js"
+import { toast } from "react-toastify";
 const ProductDetails = () => {
   const { id } = useParams();
-  const alert = useAlert
+  const params = useParams();
 
   const dispatch = useDispatch();
   const { product, loading, error } = useSelector(
@@ -18,15 +19,14 @@ const ProductDetails = () => {
   );
 
   useEffect(() => {
-    if (error){
-      alert.error(error);
-      dispatch(clearErrors())
+    if (error) {
+      toast.error(error);
+      dispatch(clearErrors());
     }
     if (id) {
       dispatch(getProductDetails(id));
     }
-    
-  }, [dispatch,id, error,alert]);
+  }, [dispatch, id, error,]);
 
   const options = {
     edit: false,
@@ -37,14 +37,21 @@ const ProductDetails = () => {
     inHalf: true,
   };
 
-  const [quantity, setQuantity] = useState(1)
-  const increaseQuantity = () =>{
-    if (product.Stock <= quantity) return
+  const [quantity, setQuantity] = useState(1);
+  const increaseQuantity = () => {
+    if (product.Stock <= quantity) return;
     const qty = quantity + 1;
     setQuantity(qty);
-  }
- const decreaseQuantity =()=>{}
-
+  };
+  const decreaseQuantity = () => {
+    if (1 >= quantity) return;
+    const qty = quantity - 1
+    setQuantity(qty);
+  };
+  const addToCartHandler = () => {
+    dispatch(addItemsToCart(params.id, quantity));
+    toast.success("Item Added To Cart");
+  };
   return (
     <Fragment>
       {loading ? (
@@ -84,12 +91,12 @@ const ProductDetails = () => {
                     {/* <button>-</button>
                     <input value="1" type="number" />
                     <button>+</button> */}
-                     <button onClick={decreaseQuantity}>-</button>
-                    <input  type="number" value={quantity} />
+                    <button onClick={decreaseQuantity}>-</button>
+                    <input readOnly type="number" value={quantity} />
                     <button onClick={increaseQuantity}>+</button>
                   </div>
                   {""}
-                  <button>Add to Cart</button>
+                  <button onClick={addToCartHandler}>Add to Cart</button>
                 </div>
 
                 <p>

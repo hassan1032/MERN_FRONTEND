@@ -10,22 +10,18 @@ import Products from "./component/Product/Products.js";
 import Search from "./component/Product/Search.js";
 import LoginSignUp from "./component/User/LoginSignUp.js";
 import store from "./Store.js";
-import { loadUser} from "./actions/userAction.js";
+import { loadUser } from "./actions/userAction.js";
 import UserOptions from "./component/layout/Header/UserOptions.js";
 import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile.js";
 import Protected from "./component/Route/ProtectedRoute.js";
 import UpdateProfile from "./component/User/UpdateProfile.js";
-import UpdatePassword from "./constants/User/UpdatePassword.js"
+import UpdatePassword from "./constants/User/UpdatePassword.js";
 import ForgotPassword from "./component/User/ForgotPassword.js";
-import ResetPassword from "./component/User/ResetPassword.js"
-
-
-
+import ResetPassword from "./component/User/ResetPassword.js";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
- 
 
   React.useEffect(() => {
     WebFont.load({
@@ -49,25 +45,26 @@ function App() {
           <Route exact path="/search" Component={Search} />
           <Route exact path="/login" Component={LoginSignUp} />
           <Route exact path="/password/forgot" Component={ForgotPassword} />
-          <Route exact path="/password/reset/:token" Component={ResetPassword} />
+          <Route
+            exact
+            path="/password/reset/:token"
+            Component={ResetPassword}
+          />
           <Route
             exact
             path="/account"
             element={<Protected component={Profile} />}
           />
-              <Route
+          <Route
             exact
             path="/me/update"
             element={<Protected component={UpdateProfile} />}
-         />
+          />
           <Route
             exact
             path="/password/update"
             element={<Protected component={UpdatePassword} />}
-         />
-           
-         
-         
+          />
         </Routes>
         <Footer />
       </Router>

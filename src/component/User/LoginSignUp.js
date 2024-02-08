@@ -9,10 +9,11 @@ import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login,register } from "../../actions/userAction";
-import { useAlert } from "react-alert";
+
+import { toast } from "react-toastify";
 const LoginSignUp = () => {
   const dispatch = useDispatch();
-  const alert = useAlert();
+  
   const { error, loading, isAuthenticated } = useSelector(
     (state) => state.user
   );
@@ -70,28 +71,28 @@ const LoginSignUp = () => {
   };
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
     if (isAuthenticated){
       navigate("/account")
     }
-  }, [dispatch, error, alert, navigate,isAuthenticated]);
+  }, [dispatch, error,  navigate,isAuthenticated]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
-      switcherTab.current.classList.add("shiftToNeutral");
-      switcherTab.current.classList.remove("shiftToRight");
+      switcherTab?.current?.classList.add("shiftToNeutral");
+      switcherTab?.current?.classList.remove("shiftToRight");
 
-      registerTab.current.classList.remove("shiftToNeutralForm");
-      loginTab.current.classList.remove("shiftToLeft");
+      registerTab?.current?.classList.remove("shiftToNeutralForm");
+      loginTab?.current?.classList.remove("shiftToLeft");
     }
     if (tab === "register") {
-      switcherTab.current.classList.add("shiftToRight");
-      switcherTab.current.classList.remove("shiftToNeutral");
+      switcherTab?.current?.classList.add("shiftToRight");
+      switcherTab?.current?.classList.remove("shiftToNeutral");
 
-      registerTab.current.classList.add("shiftToNeutralForm");
-      loginTab.current.classList.add("shiftToLeft");
+      registerTab?.current?.classList.add("shiftToNeutralForm");
+      loginTab?.current?.classList.add("shiftToLeft");
     }
   };
 
