@@ -50,7 +50,7 @@ const ProductDetails = () => {
   };
   const addToCartHandler = () => {
     dispatch(addItemsToCart(params.id, quantity));
-    toast.success("Item Added To Cart");
+    toast.success("Cart Sucessfully Added");
   };
   return (
     <Fragment>
