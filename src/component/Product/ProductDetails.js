@@ -88,9 +88,7 @@ const ProductDetails = () => {
                 <h1>{`₹${product.price}`}</h1>
                 <div className="detailsBlock-3-1">
                   <div className="detailsBlock-3-1-1">
-                    {/* <button>-</button>
-                    <input value="1" type="number" />
-                    <button>+</button> */}
+                    
                     <button onClick={decreaseQuantity}>-</button>
                     <input readOnly type="number" value={quantity} />
                     <button onClick={increaseQuantity}>+</button>
