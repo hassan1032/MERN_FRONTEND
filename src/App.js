@@ -30,7 +30,10 @@ function App() {
         families: ["Roboto", "Droid Sans", "Chilanka"],
       },
     });
-    store.dispatch(loadUser());
+    if (localStorage.getItem("token")){
+      store.dispatch(loadUser());
+    }
+   
   }, []);
   return (
     <>
