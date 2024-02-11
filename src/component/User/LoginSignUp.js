@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./LoginSignUp.css";
 import Loader from "../layout/Loader/Loader";
-import { Link } from "react-router-dom";
+import { Link,} from "react-router-dom";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import FaceIcon from "@material-ui/icons/Face";
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login,register } from "../../actions/userAction";
 
 import { toast } from "react-toastify";
-const LoginSignUp = () => {
+const LoginSignUp = ({location}) => {
   const dispatch = useDispatch();
   
   const { error, loading, isAuthenticated } = useSelector(
@@ -69,15 +69,17 @@ const LoginSignUp = () => {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   };
+    const redirect=location?.search ? location.search?.split("=")[1] : "/account";
+    console.log("reirect",redirect)
   useEffect(() => {
     if (error) {
       toast.error(error);
       dispatch(clearErrors());
     }
     if (isAuthenticated){
-      navigate("/account")
+      navigate(redirect)
     }
-  }, [dispatch, error,  navigate,isAuthenticated]);
+  },[dispatch, error,navigate,isAuthenticated,redirect]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {
