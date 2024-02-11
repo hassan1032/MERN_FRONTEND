@@ -27,7 +27,7 @@ const Home = () => {
     dispatch(getProduct());
     //dispatch(getProductDetails());
 
-  }, [dispatch,error,alert]);
+  }, [dispatch,error]);
   return (
     <Fragment>
       
