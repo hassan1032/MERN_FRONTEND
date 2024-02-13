@@ -7,6 +7,7 @@ import store from "./Store";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   
@@ -25,7 +26,10 @@ ReactDOM.render(
     
     
     />
+
+    <BrowserRouter>
     <App />
+    </BrowserRouter>
   </Provider>,
 
   document.getElementById("root")
