@@ -18,8 +18,9 @@ import CreditCardIcon from "@material-ui/icons/CreditCard";
 import EventIcon from "@material-ui/icons/Event";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import { toast } from "react-toastify";
-// import { createOrder, clearErrors } from "../../actions/orderAction";
+// import {  clearErrors } from "../../actions/orderAction";
 import { useNavigate } from "react-router-dom";
+
 
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -33,7 +34,7 @@ const Payment = () => {
 
   const { shippingInfo, cartItems } = useSelector((state) => state?.cart);
   const { user } = useSelector((state) => state?.user);
-  const { error } = useSelector((state) => state?.newOrder);
+  const { error } = useSelector((state) => state);
 
   const paymentData = {
     amount: Math.round(orderInfo.totalPrice * 100),
@@ -47,6 +48,8 @@ const Payment = () => {
     shippingPrice: orderInfo.shippingCharges,
     totalPrice: orderInfo.totalPrice,
   };
+ 
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -110,12 +113,12 @@ const Payment = () => {
     }
   };
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-      //   dispatch(clearErrors());
-    }
-  }, [dispatch, error]);
+//   useEffect(() => {
+//     if (error) {
+//       toast.error(error);
+//          dispatch(clearErrors());
+//     }
+//   }, [dispatch, error]);
 
   return (
     <Fragment>
