@@ -9,27 +9,27 @@ import LocationCityIcon from "@material-ui/icons/LocationCity";
 import PublicIcon from "@material-ui/icons/Public";
 import PhoneIcon from "@material-ui/icons/Phone";
 import TransferWithinAStationIcon from "@material-ui/icons/TransferWithinAStation";
-import { Country, State } from "country-state-city"
+import { Country, State } from "country-state-city";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
- 
+
 import CheckoutSteps from "../Cart/CheckoutSteps";
 
 const Shipping = () => {
   const dispatch = useDispatch();
+
+  const { shippingInfo = {}} = useSelector((state) => state.cart);
+  const navigate = useNavigate();
+ 
   
-  const { shippingInfo } = useSelector((state) => state.cart);
-  const navigate = useNavigate()
 
-  const [address, setAddress] = useState(shippingInfo.address);
-  const [city, setCity] = useState(shippingInfo.city);
-  const [state, setState] = useState(shippingInfo.state);
-  const [country, setCountry] = useState(shippingInfo.country);
-  const [pinCode, setPinCode] = useState(shippingInfo.pinCode);
-  const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo);
-
+  const [address, setAddress] = useState(shippingInfo?.address);
+  const [city, setCity] = useState(shippingInfo?.city);
+  const [state, setState] = useState(shippingInfo?.state);
+  const [country, setCountry] = useState(shippingInfo?.country);
+  const [pinCode, setPinCode] = useState(shippingInfo?.pinCode);
+  const [phoneNo, setPhoneNo] = useState(shippingInfo?.phoneNo);
   const shippingSubmit = (e) => {
-   
     e.preventDefault();
 
     if (phoneNo.length < 10 || phoneNo.length > 10) {
@@ -38,7 +38,9 @@ const Shipping = () => {
     }
     dispatch(
       saveShippingInfo({ address, city, state, country, pinCode, phoneNo })
+      
     );
+    console.log(shippingInfo)
     navigate("/order/confirm");
   };
 
