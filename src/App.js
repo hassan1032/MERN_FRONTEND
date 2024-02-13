@@ -27,16 +27,18 @@ import Payment from "./component/Cart/Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
+
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
   const [stripeApiKey, setStripeApiKey] = useState("");
 
   async function getStripeApiKey() {
-    try {
-      const { data } = await axios.get("/api/v1/stripeapikey");
-      console.log(data)
-      setStripeApiKey(data.stripeApiKey);
-    } catch (error) {}
+    // const { data } = await axios.post("http://localhost:4000/api/v1/stripeapikey",);
+    const { data } = await axios.get(`http://localhost:4000/api/v1/stripeapikey`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    console.log("dayasdsasd>>",data)
+    setStripeApiKey(data.stripeApiKey);
   }
 
   React.useEffect(() => {
@@ -50,59 +52,65 @@ function App() {
       getStripeApiKey();
     }
   }, []);
+  console.log("stripe key>>>",stripeApiKey)
   return (
     <>
-      <Header />
-      {isAuthenticated && <UserOptions user={user} />}
+    
+      
+        <Header />
+        {isAuthenticated && <UserOptions user={user} />}
 
-      <Routes>
-        <Route extact path="/" Component={Home} />
-        <Route exact path="/product/:id" Component={ProductDetails} />
-        <Route exact path="/products" Component={Products} />
-        <Route path="/products/:keyword" Component={Products} />
-        <Route exact path="/search" Component={Search} />
-        <Route exact path="/login" Component={LoginSignUp} />
-        <Route exact path="/password/forgot" Component={ForgotPassword} />
-        <Route exact path="/cart" Component={Cart} />
+        <Routes>
+          <Route extact path="/" Component={Home} />
+          <Route exact path="/product/:id" Component={ProductDetails} />
+          <Route exact path="/products" Component={Products} />
+          <Route path="/products/:keyword" Component={Products} />
+          <Route exact path="/search" Component={Search} />
+          <Route exact path="/login" Component={LoginSignUp} />
+          <Route exact path="/password/forgot" Component={ForgotPassword} />
+          <Route exact path="/cart" Component={Cart} />
 
-        <Route exact path="/password/reset/:token" Component={ResetPassword} />
-        <Route
-          exact
-          path="/account"
-          element={<Protected component={Profile} />}
-        />
-        <Route
-          exact
-          path="/me/update"
-          element={<Protected component={UpdateProfile} />}
-        />
-        <Route
-          exact
-          path="/password/update"
-          element={<Protected component={UpdatePassword} />}
-        />
-        <Route
-          exact
-          path="/Shipping"
-          element={<Protected component={Shipping} />}
-        />
-        <Route
-          exact
-          path="/order/confirm"
-          element={<Protected component={ConfirmOrder} />}
-        />
+          <Route
+            exact
+            path="/password/reset/:token"
+            Component={ResetPassword}
+          />
+          <Route
+            exact
+            path="/account"
+            element={<Protected component={Profile} />}
+          />
+          <Route
+            exact
+            path="/me/update"
+            element={<Protected component={UpdateProfile} />}
+          />
+          <Route
+            exact
+            path="/password/update"
+            element={<Protected component={UpdatePassword} />}
+          />
+          <Route
+            exact
+            path="/Shipping"
+            element={<Protected component={Shipping} />}
+          />
+          <Route
+            exact
+            path="/order/confirm"
+            element={<Protected component={ConfirmOrder} />}
+          />
 
-        {/* <Route
-          path="/process/payment"
-          element={
-            <Elements stripe={loadStripe('sk_test_51Oj4qpSAeOPNt4sUeehIBrUfwnlUMdNTp5ca3hpZyLqFJqo65tDs845jbl751w7pLTKuY1HsSJcjlp6hCjK8PPUh0027UzQwDy')}>
-              {" "}
-              <Payment />
-            </Elements>
-          }
-        /> */}
-      </Routes>
-      <Footer />
+         
+            <Route
+              path="/process/payment"
+              element={ <Elements stripe={loadStripe(stripeApiKey)}><Protected component={Payment} /></Elements>}
+            />
+          
+        </Routes>
+        <Footer />
+      
+      
     </>
   );
 }
