@@ -52,7 +52,7 @@ function App() {
       getStripeApiKey();
     }
   }, []);
-  console.log("stripe key>>>",stripeApiKey)
+ 
   return (
     <>
     
