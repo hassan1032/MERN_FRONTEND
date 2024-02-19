@@ -17,10 +17,9 @@ import "./payment.css";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 import EventIcon from "@material-ui/icons/Event";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
-import { toast } from "react-toastify";
-// import {  clearErrors } from "../../actions/orderAction";
+import { createOrder, clearErrors } from "../../actions/orderAction";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -32,9 +31,9 @@ const Payment = () => {
   const payBtn = useRef(null);
   const navigate = useNavigate();
 
-  const { shippingInfo, cartItems } = useSelector((state) => state?.cart);
-  const { user } = useSelector((state) => state?.user);
-  const { error } = useSelector((state) => state);
+  const { shippingInfo, cartItems } = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.user);
+  const { error } = useSelector((state) => state.newOrder);
 
   const paymentData = {
     amount: Math.round(orderInfo.totalPrice * 100),
@@ -48,8 +47,6 @@ const Payment = () => {
     shippingPrice: orderInfo.shippingCharges,
     totalPrice: orderInfo.totalPrice,
   };
- 
-
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -59,11 +56,12 @@ const Payment = () => {
     try {
       const config = {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       };
       const { data } = await axios.post(
-        "/api/v1/payment/process",
+        "http://localhost:4000/api/v1/payment/process",
         paymentData,
         config
       );
@@ -92,7 +90,7 @@ const Payment = () => {
       if (result.error) {
         payBtn.current.disabled = false;
 
-        toast.error(result.error.message);
+        alert.error(result.error.message);
       } else {
         if (result.paymentIntent.status === "succeeded") {
           order.paymentInfo = {
@@ -100,7 +98,7 @@ const Payment = () => {
             status: result.paymentIntent.status,
           };
 
-          //   dispatch(createOrder(order));
+          dispatch(createOrder(order));
 
           navigate.push("/success");
         } else {
@@ -113,12 +111,12 @@ const Payment = () => {
     }
   };
 
-//   useEffect(() => {
-//     if (error) {
-//       toast.error(error);
-//          dispatch(clearErrors());
-//     }
-//   }, [dispatch, error]);
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+  }, [dispatch, error]);
 
   return (
     <Fragment>
