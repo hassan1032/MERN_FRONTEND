@@ -29,9 +29,9 @@ import { loadStripe } from "@stripe/stripe-js";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
-  const [publishKey, setPublishKey] = useState("");
+  const [stripeApiKey, setStripeApiKey] = useState("");
 
-  async function getpublishKey() {
+  async function getStripeApiKey() {
     // const { data } = await axios.post("http://localhost:4000/api/v1/stripeapikey",);
     const { data } = await axios.get(
       `http://localhost:4000/api/v1/stripeapikey`,
@@ -40,7 +40,7 @@ function App() {
       }
     );
     console.log("dayasdsasd>>", data);
-    setPublishKey(data.publishKey);
+    setStripeApiKey(data.stripeApiKey);
   }
 
   React.useEffect(() => {
@@ -51,7 +51,7 @@ function App() {
     });
     if (localStorage.getItem("token")) {
       store.dispatch(loadUser());
-      getpublishKey();
+      getStripeApiKey();
     }
   }, []);
 
@@ -100,7 +100,7 @@ function App() {
         <Route
           path="/process/payment"
           element={
-            <Elements stripe={loadStripe(publishKey)}>
+            <Elements stripe={loadStripe(stripeApiKey)}>
               <Protected component={Payment} />
             </Elements>
           }

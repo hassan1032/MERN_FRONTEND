@@ -83,6 +83,7 @@ const Payment = () => {
               postal_code: shippingInfo.pinCode,
               country: shippingInfo.country,
             },
+            
           },
         },
       });
@@ -90,7 +91,7 @@ const Payment = () => {
       if (result.error) {
         payBtn.current.disabled = false;
 
-        alert.error(result.error.message);
+        toast.error(result.error.message);
       } else {
         if (result.paymentIntent.status === "succeeded") {
           order.paymentInfo = {
@@ -100,20 +101,21 @@ const Payment = () => {
 
           dispatch(createOrder(order));
 
-          navigate.push("/success");
+          navigate("/success");
         } else {
           toast.error("There's some issue while processing payment ");
         }
       }
     } catch (error) {
       payBtn.current.disabled = false;
-      toast.error(error.response.data.message);
+      console.log("error in payment", error)
+      toast.error(error?.response?.data?.message);
     }
   };
 
   useEffect(() => {
     if (error) {
-      alert.error(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
   }, [dispatch, error]);
@@ -128,6 +130,7 @@ const Payment = () => {
           <div>
             <CreditCardIcon />
             <CardNumberElement className="paymentInput" />
+          
           </div>
           <div>
             <EventIcon />
