@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./component/layout/Header.js";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import WebFont from "webfontloader";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Footer from "./component/layout/Footer/Footer.js";
 import Home from "./component/Home/Home.js";
 import ProductDetails from "./component/Product/ProductDetails.js";
@@ -15,6 +15,7 @@ import UserOptions from "./component/layout/Header/UserOptions.js";
 import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile.js";
 import Protected from "./component/Route/ProtectedRoute.js";
+
 import UpdateProfile from "./component/User/UpdateProfile.js";
 import UpdatePassword from "./constants/User/UpdatePassword.js";
 import ForgotPassword from "./component/User/ForgotPassword";
@@ -26,6 +27,10 @@ import axios from "axios";
 import Payment from "./component/Cart/Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import OrderSuccess from "./component/Cart/OrderSuccess"
+import  MyOrders  from "./component/Order/MyOrders.js";  
+
+
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -100,10 +105,22 @@ function App() {
         <Route
           path="/process/payment"
           element={
-            <Elements stripe={loadStripe(stripeApiKey)}>
-              <Protected component={Payment} />
-            </Elements>
+            stripeApiKey && (
+              <Elements stripe={loadStripe(stripeApiKey)}>
+                <Protected component={Payment} />
+              </Elements>
+            )
           }
+        />
+        <Route
+          exact
+          path="/success"
+          element={<Protected component={OrderSuccess} />}
+        />
+          <Route
+          exact
+          path="/orders"
+          element={<Protected component={MyOrders} />}
         />
       </Routes>
       <Footer />
