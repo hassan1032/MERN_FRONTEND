@@ -54,7 +54,7 @@ function App() {
         families: ["Roboto", "Droid Sans", "Chilanka"],
       },
     });
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem("token") && !isAuthenticated) {
       store.dispatch(loadUser());
       getStripeApiKey();
     }

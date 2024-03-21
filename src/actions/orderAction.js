@@ -35,16 +35,17 @@ import {
   };
 
   // My Order 
-
   export const myOrders = () => async (dispatch) => {
     try {
       dispatch({ type: MY_ORDERS_REQUEST });
-      
   
-      const { data } = await axios.get("http://localhost:4000/api/v1/orders/me");
-      console.log("order data",data);
+      const { data } = await axios.get("http://localhost:4000/api/v1/orders/me", {headers: {
+        Authorization: "Bearer "+ localStorage.getItem("token")
+      }});
+      console.log("data is ",data)
   
       dispatch({ type: MY_ORDERS_SUCCESS, payload: data.orders });
+      console.log("data is ",data)
     } catch (error) {
       dispatch({
         type: MY_ORDERS_FAIL,
@@ -52,7 +53,9 @@ import {
       });
     }
   };
-
+      
+  
+    
   // Clearing Errors
 
   export const clearErrors = () =>async(dispatch)=>{

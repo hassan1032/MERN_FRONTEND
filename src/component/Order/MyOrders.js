@@ -17,7 +17,6 @@ const MyOrders = () => {
 
   const { loading, error, orders } = useSelector((state) => state.myOrders);
   const { user } = useSelector((state) => state.user);
-
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },
 
@@ -81,8 +80,11 @@ const MyOrders = () => {
       toast.error(error);
       dispatch(clearErrors());
     }
+    if(Object.keys(user).length){
+      console.log("api called")
     dispatch(myOrders());
-  }, []);
+    }
+  }, [user]);
 
   return (
     <Fragment>
